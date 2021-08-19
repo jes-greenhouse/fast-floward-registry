@@ -91,6 +91,71 @@ module.exports = class DappLib {
     }
   }
 
+    /********** Project **********/
+
+  static async getUsername(data) {
+
+    let result = await Blockchain.get({
+      config: DappLib.getConfig(),
+      roles: {
+      }
+    },
+      'project_get_username',
+      {
+        account: { value: data.account, type: t.Address }
+      }
+    );
+
+    return {
+      type: DappLib.DAPP_RESULT_STRING,
+      label: 'Username',
+      result: result.callData
+    }
+  }
+
+  static async getWelcome(data) {
+
+    let result = await Blockchain.get({
+      config: DappLib.getConfig(),
+      roles: {
+      }
+    },
+      'project_get_welcome',
+      {
+        account: { value: data.account, type: t.Address }
+      }
+    );
+
+    return {
+      type: DappLib.DAPP_RESULT_STRING,
+      label: 'User welcome',
+      result: result.callData
+    }
+  }
+
+  static async setUsername(data) {
+
+    let result = await Blockchain.post({
+      config: DappLib.getConfig(),
+      roles: {
+        proposer: data.signer,
+      }
+    },
+      'project_set_username',
+      {
+        name: { value: data.name, type: t.String },
+      }
+    );
+
+    return {
+      type: DappLib.DAPP_RESULT_TX_HASH,
+      label: 'Transaction Hash',
+      result: result.callData.transactionId
+    }
+  }
+
+
+
   /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> DAPP LIBRARY  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
   static get DAPP_STATE_CONTRACT() {

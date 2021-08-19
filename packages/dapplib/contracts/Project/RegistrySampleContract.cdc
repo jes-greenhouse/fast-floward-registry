@@ -14,10 +14,27 @@ pub contract RegistrySampleContract: RegistryInterface {
     // that would normally be saved to account storage in the contract's
     // init() function
     // 
-    pub resource Tenant {
+    pub resource interface ITenantPublic {
+        pub var userName: String
+    }
+
+    pub resource interface ITenantPrivate{
+        pub fun updateUserName(name: String)
+    }
+
+    pub resource Tenant: ITenantPrivate, ITenantPublic {
+
+        pub var userName: String
+
+        pub fun updateUserName(name: String) {
+            self.userName = name
+        }
 
         init() {
-    
+            self.userName = "HelloWorld"
+        }
+
+        destroy() {
         }
     }
 

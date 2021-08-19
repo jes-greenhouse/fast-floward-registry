@@ -6,6 +6,14 @@ import RegistrySampleContract from Project.RegistrySampleContract
 
 pub contract ComposedContract {
 
+    pub fun getUserName(tenant: &RegistrySampleContract.Tenant{RegistrySampleContract.ITenantPublic}): String {
+        return tenant.userName
+    }
+
+    pub fun getWelcome(tenant: &RegistrySampleContract.Tenant{RegistrySampleContract.ITenantPublic}): String {
+        return "Welcome ".concat(tenant.userName).concat("!")
+    }
+
     init() {
 
     }

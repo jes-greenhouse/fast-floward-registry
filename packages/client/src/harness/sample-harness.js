@@ -58,7 +58,27 @@ export default class SampleHarness extends LitElement {
           <account-widget field="account" label="Account">
           </account-widget>
         </action-card>
-      
+
+        <!-- Get User Name -->
+        <action-card title="Get Username" description="Get the username from tenant profile" action="getUsername"
+          method="get" fields="account">
+          <account-widget field="account" label="Account">
+          </account-widget>
+        </action-card>
+
+        <!-- Set User Name -->
+        <action-card title="Set Username" description="Set the username for tenant profile" action="setUsername"
+          method="post" fields="signer name">
+          <account-widget field="signer" label="Account"></account-widget>
+          <text-widget field="name" label="Username" placeholder=""> </text-widget>
+        </action-card>
+
+        <!-- Get User Welcome -->
+        <action-card title="Get User Welcome" description="Get welcome message from tenant profile" action="getWelcome"
+          method="get" fields="account">
+          <account-widget field="account" label="Account">
+          </account-widget>
+        </action-card>
       
       </page-body>
       <page-panel id="resultPanel"></page-panel>
